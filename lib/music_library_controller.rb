@@ -92,23 +92,16 @@ class MusicLibraryController
     end
   end
 
+  def sorted_songs
+    Song.all.sort_by{|s| s.name}
+  end
+
   def play_song
     puts "Which song number would you like to play?"
-    #list_songs
     choice = gets.strip.to_i
-      #if choice < 1 || choice > list_songs.size
-      #puts "Which song number would you like to play?"
-      if choice == 1
-        puts "Playing For Love I Come by Thundercat"
-      elsif choice == 2
-        puts "Playing Green Aisles by Real Estate"
-      elsif choice == 3
-        puts "Playing It's Real by Real Estate"
-      elsif choice == 4
-        puts "Playing Larry Csonka by Action Bronson"
-      elsif choice == 5
-        puts "Playing What's Golden by Jurassic 5"
-      end
+    if choice >=1 && choice <=sorted_songs.size #made a sorted_songs method above
+      puts "Playing #{sorted_songs[choice-1].name} by #{sorted_songs[choice-1].artist.name}"
     end
+  end
 
 end
